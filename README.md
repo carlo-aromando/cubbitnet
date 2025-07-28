@@ -71,3 +71,14 @@ Then open your browser at [http://localhost:6060/pkg/](http://localhost:6060/pkg
 The project uses GitHub Actions with Nix to run build, test, and lint steps separately. See `.github/workflows/ci.yml` for details.
 
 ---
+
+
+
+
+
+
+- how to release via github, release notes, something automagic, maybe github actions?
+- how to install the lib inside the monorepo
+- add https://github.com/linxGnu/grocksdb
+- 
+
