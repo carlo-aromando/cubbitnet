@@ -74,6 +74,7 @@ go_repository(
         "//patches:grocksdb_move_bindings.patch",
         "//patches:grocksdb_buildfile.patch",
         "//patches:grocksdb_remove_clinkopts.patch",
+        "//patches:grocksdb_add_liburing.patch",
     ],
 )
 

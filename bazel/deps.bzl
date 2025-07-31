@@ -140,4 +140,27 @@ cc_library(
 )
         """
     )
+    nixpkgs_package(
+        name = "liburing.out",
+        repository = "@nixpkgs",
+    )
+    nixpkgs_package(
+        name = "liburing.dev",
+        repository = "@nixpkgs",
+        build_file_content = """\
+load("@rules_cc//cc:defs.bzl", "cc_library")
+filegroup(
+    name = "include",
+    srcs = glob(["include/**/*.h"]),
+    visibility = ["//visibility:public"],
+)
+cc_library(
+    name = "liburing",
+    srcs = ["@liburing.out//:lib"],
+    hdrs = [":include"],
+    strip_include_prefix = "include",
+    visibility = ["//visibility:public"],
+)
+        """
+    )
 

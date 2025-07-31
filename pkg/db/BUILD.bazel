@@ -8,13 +8,4 @@ go_library(
     deps = [
         "@com_github_linxgnu_grocksdb//:grocksdb",
     ],
-    cgo = True,
-    cdeps = [
-        "@rocksdb",
-        "@snappy.dev//:snappy",
-        "@zlib.dev//:zlib",
-        "@bzip2.dev//:bzip2",
-        "@lz4.dev//:lz4",
-        "@zstd.dev//:zstd",
-    ],
 )
