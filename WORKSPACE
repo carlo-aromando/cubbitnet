@@ -19,34 +19,16 @@ http_archive(
     ],
 )
 
-# rules_nixpkgs
-http_archive(
-    name = "io_tweag_rules_nixpkgs",
-    strip_prefix = "rules_nixpkgs-cbaa7e62e9c4da23df247809a8f97db0e124ec8c",
-    urls = ["https://github.com/tweag/rules_nixpkgs/archive/cbaa7e62e9c4da23df247809a8f97db0e124ec8c.tar.gz"],
-)
-
-# register local nixpkgs repository
-load("@io_tweag_rules_nixpkgs//nixpkgs:repositories.bzl", "rules_nixpkgs_dependencies")
-
-rules_nixpkgs_dependencies()
-
-load("@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_local_repository")
-
-nixpkgs_local_repository(
-    name = "nixpkgs",
-    nix_file = "//:nixpkgs.nix",
-    nix_file_deps = ["//:flake.lock"],
-)
-
+# deps
 load("//bazel:deps.bzl", "cubbitnet_dependencies")
 cubbitnet_dependencies()
 
+# go dependencies
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 go_rules_dependencies()
 go_register_toolchains(version = "1.24.4")
 
-# go dependencies
+# gazelle
 http_archive(
     name = "bazel_gazelle",
     integrity = "sha256-XYDmKnAxTznMdkwcPqqADFk2yfHqkWJQBiJ85NIM0IY=",
@@ -59,7 +41,6 @@ http_archive(
 load("//third_party:repositories.bzl", "go_repositories")
 # gazelle:repository_macro third_party/repositories.bzl%go_repositories
 go_repositories()
-
 
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 go_repository(

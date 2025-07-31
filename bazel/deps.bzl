@@ -1,6 +1,24 @@
 load("@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_package")
 
 def cubbitnet_dependencies():
+    # rules_nixpkgs
+    http_archive(
+        name = "io_tweag_rules_nixpkgs",
+        strip_prefix = "rules_nixpkgs-cbaa7e62e9c4da23df247809a8f97db0e124ec8c",
+        urls = ["https://github.com/tweag/rules_nixpkgs/archive/cbaa7e62e9c4da23df247809a8f97db0e124ec8c.tar.gz"],
+    )
+
+    # register local nixpkgs repository
+    load("@io_tweag_rules_nixpkgs//nixpkgs:repositories.bzl", "rules_nixpkgs_dependencies")
+    rules_nixpkgs_dependencies()
+
+    load("@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_git_repository")
+    nixpkgs_git_repository(
+        name = "nixpkgs",
+        revision = "11707dc2f618dd54ca8739b309ec4fc024de578b",
+    )
+
+    # nixpkgs
     nixpkgs_package(
         name = "rocksdb.internal",
         attribute_path = "rocksdb",
