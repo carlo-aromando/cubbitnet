@@ -11,24 +11,30 @@
       };
     in
     {
-      devShells.default = pkgs.mkShell {
-        buildInputs = [
-          pkgs.go
-          pkgs.gopls
-          pkgs.golangci-lint
-          pkgs.gotools
-          pkgs.rocksdb
-          pkgs.snappy
-          pkgs.zlib
-          pkgs.bzip2
-          pkgs.lz4
-          pkgs.zstd
-          pkgs.goreleaser
+      devShells.default = pkgs.mkShellNoCC {
+        buildInputs = with pkgs; [
+          # local development tools
+          go
+          gopls
+          golangci-lint
+          gotools
+          goreleaser
+
+          # local development deps
+          rocksdb
+          snappy
+          zlib
+          bzip2
+          lz4
+          zstd
+
+          # bazel development
+          bazel_7
         ];
         shellHook = ''
-          export CGO_ENABLED=1
-          export CGO_CFLAGS="-I${pkgs.rocksdb}/include"
-          export CGO_LDFLAGS="-L${pkgs.rocksdb}/lib -lrocksdb -lsnappy -lz -lbz2 -llz4 -lzstd -lstdc++"
+          # export CGO_ENABLED=1
+          # export CGO_CFLAGS="-I${pkgs.rocksdb}/include"
+          # export CGO_LDFLAGS="-L${pkgs.rocksdb}/lib -lrocksdb -lsnappy -lz -lbz2 -llz4 -lzstd -lstdc++"
           echo "Welcome to cubbitnet dev shell"
         '';
       };

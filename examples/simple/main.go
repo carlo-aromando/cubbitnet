@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"cubbit.eu/cubbitnet/pkg/message"
-	"cubbit.eu/cubbitnet/pkg/node"
-	"cubbit.eu/cubbitnet/pkg/transport"
+	"github.com/carlo-aromando/cubbitnet/pkg/message"
+	"github.com/carlo-aromando/cubbitnet/pkg/node"
+	"github.com/carlo-aromando/cubbitnet/pkg/transport"
 )
 
 func main() {

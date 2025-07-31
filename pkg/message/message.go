@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"regexp"
 
-	"cubbit.eu/cubbitnet/internal/codec"
+	"github.com/carlo-aromando/cubbitnet/internal/codec"
 )
 
 // Message represents a generic message.

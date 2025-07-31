@@ -4,7 +4,7 @@ import (
 	"errors"
 	"sync"
 
-	"cubbit.eu/cubbitnet/pkg/message"
+	"github.com/carlo-aromando/cubbitnet/pkg/message"
 )
 
 // Backend defines transport methods.

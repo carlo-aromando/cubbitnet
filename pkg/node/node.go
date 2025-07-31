@@ -6,10 +6,10 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"cubbit.eu/cubbitnet/internal/identity"
-	"cubbit.eu/cubbitnet/internal/utils"
-	"cubbit.eu/cubbitnet/pkg/message"
-	"cubbit.eu/cubbitnet/pkg/transport"
+	"github.com/carlo-aromando/cubbitnet/internal/identity"
+	"github.com/carlo-aromando/cubbitnet/internal/utils"
+	"github.com/carlo-aromando/cubbitnet/pkg/message"
+	"github.com/carlo-aromando/cubbitnet/pkg/transport"
 )
 
 // Node represents a message-capable peer.

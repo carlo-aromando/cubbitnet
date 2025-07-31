@@ -3,8 +3,8 @@ package test
 import (
 	"testing"
 
-	"cubbit.eu/cubbitnet/pkg/message"
-	"cubbit.eu/cubbitnet/pkg/node"
+	"github.com/carlo-aromando/cubbitnet/pkg/message"
+	"github.com/carlo-aromando/cubbitnet/pkg/node"
 )
 
 func TestE2E(t *testing.T) {

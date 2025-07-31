@@ -1,4 +1,4 @@
-module cubbit.eu/cubbitnet
+module github.com/carlo-aromando/cubbitnet
 
 go 1.24
 
