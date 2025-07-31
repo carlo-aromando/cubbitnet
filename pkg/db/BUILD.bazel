@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "db",
+    srcs = ["db.go"],
+    importpath = "github.com/carlo-aromando/cubbitnet/pkg/db",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_linxgnu_grocksdb//:grocksdb",
+    ],
+    cgo = True,
+    cdeps = [
+        "@rocksdb",
+        "@snappy.dev//:snappy",
+        "@zlib.dev//:zlib",
+        "@bzip2.dev//:bzip2",
+        "@lz4.dev//:lz4",
+        "@zstd.dev//:zstd",
+    ],
+)

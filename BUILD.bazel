@@ -1,0 +1,68 @@
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+GAZELLE_UPDATE_ARGS = [
+    "-build_file_name",
+    "BUILD.bazel",
+    "-go_naming_convention",
+    "import",
+    "-lang",
+    "go",
+    "-exclude",
+    "services",
+    "-exclude",
+    "sdk",
+    "-exclude",
+    "agent",
+    "-exclude",
+    "tools",
+    "-exclude",
+    "node_modules",
+    "-exclude",
+    "proto",
+    "-exclude",
+    "bazel",
+    "-exclude",
+    "kubernetes",
+    "-exclude",
+    "patches",
+    "-exclude",
+    "tilt_modules",
+    "-exclude",
+    "dist",
+    "-exclude",
+    "test-utils",
+    "-exclude",
+    "third_party",
+    "-exclude",
+    "docs",
+    "-exclude",
+    "kernel",
+    "-exclude",
+    "client/cli",
+]
+
+# gazelle:prefix github.com/cubbit/cubbit
+gazelle(
+    name = "gazelle",
+    command = "update",
+    extra_args = GAZELLE_UPDATE_ARGS,
+)
+
+gazelle(
+    name = "gazelle-fix",
+    command = "fix",
+    extra_args = GAZELLE_UPDATE_ARGS,
+)
+
+gazelle(
+    name = "gazelle-update-repos",
+    command = "update-repos",
+    extra_args = [
+        "-from_file=go.mod",
+        "-to_macro=third_party/repositories.bzl%go_repositories",
+        "-prune=true",
+        "-build_file_proto_mode=disable",
+        "-build_directives",
+        "\"gazelle:default_visibility //visibility:public\"",
+    ],
+)

@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "node",
+    srcs = ["node.go"],
+    importpath = "github.com/carlo-aromando/cubbitnet/pkg/node",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//internal/identity",
+        "//internal/utils",
+        "//pkg/message",
+        "//pkg/transport",
+        "@com_github_rs_zerolog//:zerolog",
+    ]
+)

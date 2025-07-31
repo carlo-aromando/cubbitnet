@@ -1,0 +1,25 @@
+--- BUILD.bazel	2025-07-31 15:07:09.000000000 +0200
++++ BUILD.bazel	2025-07-31 16:00:07.000000000 +0200
+@@ -7,6 +7,7 @@
+     srcs = [
+         "array.go",
+         "backup.go",
++        "rocksdb/c.h",
+         "c.h",
+         "cache.go",
+         "cf_handle.go",
+@@ -61,6 +62,14 @@
+         "write_buffer_manager.go",
+     ],
+     cgo = True,
++    cdeps = [
++        "@rocksdb",
++        "@snappy.dev//:snappy",
++        "@zlib.dev//:zlib",
++        "@bzip2.dev//:bzip2",
++        "@lz4.dev//:lz4",
++        "@zstd.dev//:zstd",
++    ],
+     clinkopts = ["-lrocksdb -pthread -lstdc++ -ldl -lm -lzstd -llz4 -lz -lsnappy"],
+     importpath = "github.com/linxGnu/grocksdb",
+     visibility = ["//visibility:public"],

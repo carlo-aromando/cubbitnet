@@ -1,0 +1,11 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "message",
+    srcs = ["message.go"],
+    importpath = "github.com/carlo-aromando/cubbitnet/pkg/message",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//internal/codec",
+    ]
+)

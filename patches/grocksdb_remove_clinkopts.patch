@@ -1,0 +1,11 @@
+--- BUILD.bazel	2025-07-31 16:13:25.000000000 +0200
++++ BUILD.bazel	2025-07-31 16:15:57.000000000 +0200
+@@ -70,7 +70,7 @@
+         "@lz4.dev//:lz4",
+         "@zstd.dev//:zstd",
+     ],
+-    clinkopts = ["-lrocksdb -pthread -lstdc++ -ldl -lm -lzstd -llz4 -lz -lsnappy"],
++    #clinkopts = ["-lrocksdb -pthread -lstdc++ -ldl -lm -lzstd -llz4 -lz -lsnappy"],
+     importpath = "github.com/linxGnu/grocksdb",
+     visibility = ["//visibility:public"],
+ )
