@@ -20,6 +20,8 @@ http_archive(
 )
 
 # deps
+load("//bazel:prelude.bzl", "cubbitnet_prelude")
+cubbitnet_prelude()
 load("//bazel:deps.bzl", "cubbitnet_dependencies")
 cubbitnet_dependencies()
 
