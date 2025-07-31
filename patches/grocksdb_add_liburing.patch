@@ -4,7 +4,7 @@
          "@bzip2.dev//:bzip2",
          "@lz4.dev//:lz4",
          "@zstd.dev//:zstd",
-+        "@liburing.dev//:libruing",
++        "@liburing.dev//:liburing",
      ],
      #clinkopts = ["-lrocksdb -pthread -lstdc++ -ldl -lm -lzstd -llz4 -lz -lsnappy"],
      importpath = "github.com/linxGnu/grocksdb",
