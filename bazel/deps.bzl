@@ -1,17 +1,10 @@
-load("@io_tweag_rules_nixpkgs//nixpkgs:repositories.bzl", "rules_nixpkgs_dependencies")
-load("@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_git_repository")
-load("@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_package")
+load("@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_git_repository", "nixpkgs_package")
 
 def cubbitnet_dependencies():
-    # register local nixpkgs repository
-    rules_nixpkgs_dependencies()
-
     nixpkgs_git_repository(
         name = "nixpkgs",
-        revision = "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        revision = "fc02ee70efb805d3b2865908a13ddd4474557ecf",
     )
-
-    # nixpkgs
     nixpkgs_package(
         name = "rocksdb.internal",
         attribute_path = "rocksdb",

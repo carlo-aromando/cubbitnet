@@ -27,6 +27,9 @@ http_archive(
     urls = ["https://github.com/tweag/rules_nixpkgs/archive/cbaa7e62e9c4da23df247809a8f97db0e124ec8c.tar.gz"],
 )
 
+load("@io_tweag_rules_nixpkgs//nixpkgs:repositories.bzl", "rules_nixpkgs_dependencies")
+rules_nixpkgs_dependencies()
+
 # deps
 load("//bazel:deps.bzl", "cubbitnet_dependencies")
 cubbitnet_dependencies()

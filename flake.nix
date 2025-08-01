@@ -32,9 +32,9 @@
           bazel_7
         ];
         shellHook = ''
-          # export CGO_ENABLED=1
-          # export CGO_CFLAGS="-I${pkgs.rocksdb}/include"
-          # export CGO_LDFLAGS="-L${pkgs.rocksdb}/lib -lrocksdb -lsnappy -lz -lbz2 -llz4 -lzstd -lstdc++"
+          export CGO_ENABLED=1
+          export CGO_CFLAGS="-I${pkgs.rocksdb}/include"
+          export CGO_LDFLAGS="-L${pkgs.rocksdb}/lib -lrocksdb -lsnappy -lz -lbz2 -llz4 -lzstd -lstdc++ -luring"
           echo "Welcome to cubbitnet dev shell"
         '';
       };
