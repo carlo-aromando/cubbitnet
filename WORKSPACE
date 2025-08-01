@@ -10,9 +10,24 @@ http_archive(
     ],
 )
 
+# skylib
+http_archive(
+    name = "bazel_skylib",
+    sha256 = "9f38886a40548c6e96c106b752f242130ee11aaa068a56ba7e56f4511f33e4f2",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.6.1/bazel-skylib-1.6.1.tar.gz",
+        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.6.1/bazel-skylib-1.6.1.tar.gz",
+    ],
+)
+
+# rules_nixpkgs
+http_archive(
+    name = "io_tweag_rules_nixpkgs",
+    strip_prefix = "rules_nixpkgs-cbaa7e62e9c4da23df247809a8f97db0e124ec8c",
+    urls = ["https://github.com/tweag/rules_nixpkgs/archive/cbaa7e62e9c4da23df247809a8f97db0e124ec8c.tar.gz"],
+)
+
 # deps
-load("//bazel:prelude.bzl", "cubbitnet_prelude")
-cubbitnet_prelude()
 load("//bazel:deps.bzl", "cubbitnet_dependencies")
 cubbitnet_dependencies()
 
