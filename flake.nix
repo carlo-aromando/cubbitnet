@@ -12,6 +12,19 @@
     in
     {
       devShells.default = pkgs.mkShell {
+        LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [
+          stdenv.cc.cc
+          rocksdb
+          snappy
+          zlib
+          bzip2
+          lz4
+          zstd
+          liburing
+        ];
+        CGO_ENABLED = "1";
+        CGO_CFLAGS = "-I${pkgs.rocksdb}/include";
+        CGO_LDFLAGS = "-L${pkgs.rocksdb}/lib -lrocksdb -lsnappy -lz -lbz2 -llz4 -lzstd -lstdc++ -luring";
         packages = with pkgs; [
           # local development tools
           go
@@ -33,9 +46,6 @@
           bazel_7
         ];
         shellHook = ''
-          export CGO_ENABLED=1
-          export CGO_CFLAGS="-I${pkgs.rocksdb}/include"
-          export CGO_LDFLAGS="-L${pkgs.rocksdb}/lib -lrocksdb -lsnappy -lz -lbz2 -llz4 -lzstd -lstdc++ -luring"
           echo "Welcome to cubbitnet dev shell"
         '';
       };
