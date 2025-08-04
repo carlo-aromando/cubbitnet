@@ -10,7 +10,7 @@
 - `test/` - End-to-end tests
 - `flake.nix` - Nix flake for development environment and CI
 
-## Installation
+## Build
 
 Make sure you have Go 1.24 installed, or use the provided Nix environment:
 
@@ -23,11 +23,12 @@ go mod tidy
 
 ### Running the example
 
-You can run the example without changing directory into the example folder.  
+You can run the example without changing directory into the example folder.
 From the root of the project, simply execute:
 
 ```bash
 go run ./examples/simple
+go run ./examples/db
 ```
 
 Make sure you run the command from the project root (where `go.mod` is located) to preserve the module context.
@@ -70,15 +71,37 @@ Then open your browser at [http://localhost:6060/pkg/](http://localhost:6060/pkg
 
 The project uses GitHub Actions with Nix to run build, test, and lint steps separately. See `.github/workflows/ci.yml` for details.
 
+## Bazel integration
+
+This library requires [Nix](https://nixos.org) to be installed.
+
+To add it to your Bazel project, include the following in your WORKSPACE file:
+
+```python
+# rules_nixpkgs
+http_archive(
+    name = "io_tweag_rules_nixpkgs",
+    strip_prefix = "rules_nixpkgs-a0548813a1d3d3d08e2f1952ea0a9b1777ed160b",
+    urls = ["https://github.com/carlo-aromando/rules_nixpkgs/archive/a0548813a1d3d3d08e2f1952ea0a9b1777ed160b.tar.gz"],
+)
+
+load("@io_tweag_rules_nixpkgs//nixpkgs:repositories.bzl", "rules_nixpkgs_dependencies")
+
+rules_nixpkgs_dependencies()
+
+# cubbitnet dependencies
+http_archive(
+    name = "com_github_carlo_aromando_cubbitnet",
+    strip_prefix = "cubbitnet-0.1.8",
+    url = "https://github.com/carlo-aromando/cubbitnet/archive/refs/tags/v0.1.8.tar.gz",
+)
+
+load("@com_github_carlo_aromando_cubbitnet//bazel:deps.bzl", "cubbitnet_dependencies")
+
+cubbitnet_dependencies()
+```
+
 ---
 
 
-
-
-
-
-- how to release via github, release notes, something automagic, maybe github actions?
-- how to install the lib inside the monorepo
-- add https://github.com/linxGnu/grocksdb
-- 
 
