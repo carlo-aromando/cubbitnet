@@ -1,10 +1,10 @@
 --- BUILD.bazel	2025-07-31 16:18:00.000000000 +0200
 +++ BUILD.bazel	2025-07-31 17:15:29.000000000 +0200
 @@ -69,6 +69,7 @@
-         "@bzip2.dev//:bzip2",
-         "@lz4.dev//:lz4",
-         "@zstd.dev//:zstd",
-+        "@liburing.dev//:liburing",
+         "@bzip2.nix//:bzip2",
+         "@lz4.nix//:lz4",
+         "@zstd.nix//:zstd",
++        "@liburing.nix//:liburing",
      ],
      #clinkopts = ["-lrocksdb -pthread -lstdc++ -ldl -lm -lzstd -llz4 -lz -lsnappy"],
      importpath = "github.com/linxGnu/grocksdb",
