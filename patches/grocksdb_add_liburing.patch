@@ -6,5 +6,5 @@
          "@zstd.nix//:zstd",
 +        "@liburing.nix//:liburing",
      ],
-     #clinkopts = ["-lrocksdb -pthread -lstdc++ -ldl -lm -lzstd -llz4 -lz -lsnappy"],
+     clinkopts = ["-pthread -lstdc++"],
      importpath = "github.com/linxGnu/grocksdb",

@@ -5,7 +5,7 @@
          "@zstd.nix//:zstd",
      ],
 -    clinkopts = ["-lrocksdb -pthread -lstdc++ -ldl -lm -lzstd -llz4 -lz -lsnappy"],
-+    #clinkopts = ["-lrocksdb -pthread -lstdc++ -ldl -lm -lzstd -llz4 -lz -lsnappy"],
++    clinkopts = ["-pthread -lstdc++"],
      importpath = "github.com/linxGnu/grocksdb",
      visibility = ["//visibility:public"],
  )
