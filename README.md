@@ -86,7 +86,6 @@ http_archive(
 )
 
 load("@io_tweag_rules_nixpkgs//nixpkgs:repositories.bzl", "rules_nixpkgs_dependencies")
-
 rules_nixpkgs_dependencies()
 
 # cubbitnet dependencies
@@ -97,9 +96,54 @@ http_archive(
 )
 
 load("@com_github_carlo_aromando_cubbitnet//bazel:deps.bzl", "cubbitnet_dependencies")
-
 cubbitnet_dependencies()
 ```
+
+### Example Usage with go_binary
+After adding the required dependencies to your WORKSPACE file (as shown above), you can use the library in your Bazel Go targets.
+
+Here's a minimal example using go_binary:
+
+`BUILD.bazel`
+
+```python
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_binary(
+    name = "app",
+    embed = [":lib"],
+)
+
+go_library(
+    name = "lib",
+    srcs = ["main.go"],
+    importpath = "example.com/app",
+    deps = [
+        "@com_github_carlo_aromando_cubbitnet//pkg/db",
+    ],
+)
+```
+
+`main.go`
+
+```go
+package main
+
+import (
+    "github.com/carlo-aromando/cubbitnet/pkg/db"
+)
+
+func main() {
+    db.Test()
+}
+```
+
+Build the binary with:
+
+```
+bazel build //:app
+```
+
 
 ---
 
