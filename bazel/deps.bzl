@@ -12,7 +12,8 @@ def cubbitnet_dependencies(repo="@com_github_carlo_aromando_cubbitnet"):
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "rocksdb",
+        name = "rocksdb.nix",
+        attribute_path = "rocksdb",
         build_file_content = """\
 load("@rules_cc//cc:defs.bzl", "cc_library")
 filegroup(
@@ -31,11 +32,13 @@ cc_library(
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "snappy",
+        name = "snappy.internal",
+        attribute_path = "snappy",
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "snappy.dev",
+        name = "snappy.nix",
+        attribute_path = "snappy.dev",
         repository = "@nixpkgs",
         build_file_content = """\
 load("@rules_cc//cc:defs.bzl", "cc_library")
@@ -46,7 +49,7 @@ filegroup(
 )
 cc_library(
     name = "snappy",
-    srcs = ["@snappy//:lib"],
+    srcs = ["@snappy.internal//:lib"],
     hdrs = [":include"],
     strip_include_prefix = "include",
     visibility = ["//visibility:public"],
@@ -54,11 +57,13 @@ cc_library(
     """,
     )
     nixpkgs_package(
-        name = "zlib",
+        name = "zlib.internal",
+        attribute_path = "zlib",
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "zlib.dev",
+        name = "zlib.nix",
+        attribute_path = "zlib.dev",
         build_file_content = """\
 load("@rules_cc//cc:defs.bzl", "cc_library")
 filegroup(
@@ -68,7 +73,7 @@ filegroup(
 )
 cc_library(
     name = "zlib",
-    srcs = ["@zlib//:lib"],
+    srcs = ["@zlib.internal//:lib"],
     hdrs = [":include"],
     strip_include_prefix = "include",
     visibility = ["//visibility:public"],
@@ -77,11 +82,13 @@ cc_library(
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "bzip2.out",
+        name = "bzip2.internal",
+        attribute_path = "bzip2.out",
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "bzip2.dev",
+        name = "bzip2.nix",
+        attribute_path = "bzip2.dev",
         build_file_content = """\
 load("@rules_cc//cc:defs.bzl", "cc_library")
 filegroup(
@@ -91,7 +98,7 @@ filegroup(
 )
 cc_library(
     name = "bzip2",
-    srcs = ["@bzip2.out//:lib"],
+    srcs = ["@bzip2.internal//:lib"],
     hdrs = [":include"],
     strip_include_prefix = "include",
     visibility = ["//visibility:public"],
@@ -100,11 +107,13 @@ cc_library(
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "lz4.lib",
+        name = "lz4.internal",
+        attribute_path = "lz4.lib",
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "lz4.dev",
+        name = "lz4.nix",
+        attribute_path = "lz4.dev",
         repository = "@nixpkgs",
         build_file_content = """\
 load("@rules_cc//cc:defs.bzl", "cc_library")
@@ -115,7 +124,7 @@ filegroup(
 )
 cc_library(
     name = "lz4",
-    srcs = ["@lz4.lib//:lib"],
+    srcs = ["@lz4.internal//:lib"],
     hdrs = [":include"],
     strip_include_prefix = "include",
     visibility = ["//visibility:public"],
@@ -123,11 +132,13 @@ cc_library(
     """,
     )    
     nixpkgs_package(
-        name = "zstd.out",
+        name = "zstd.internal",
+        attribute_path = "zstd.out",
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "zstd.dev",
+        name = "zstd.nix",
+        attribute_path = "zstd.dev",
         repository = "@nixpkgs",
         build_file_content = """\
 load("@rules_cc//cc:defs.bzl", "cc_library")
@@ -138,7 +149,7 @@ filegroup(
 )
 cc_library(
     name = "zstd",
-    srcs = ["@zstd.out//:lib"],
+    srcs = ["@zstd.internal//:lib"],
     hdrs = [":include"],
     strip_include_prefix = "include",
     visibility = ["//visibility:public"],
@@ -146,11 +157,13 @@ cc_library(
         """
     )
     nixpkgs_package(
-        name = "liburing.out",
+        name = "liburing.internal",
+        attribute_path = "liburing.out",
         repository = "@nixpkgs",
     )
     nixpkgs_package(
-        name = "liburing.dev",
+        name = "liburing.nix",
+        attribute_path = "liburing.dev",
         repository = "@nixpkgs",
         build_file_content = """\
 load("@rules_cc//cc:defs.bzl", "cc_library")
@@ -161,7 +174,7 @@ filegroup(
 )
 cc_library(
     name = "liburing",
-    srcs = ["@liburing.out//:lib"],
+    srcs = ["@liburing.internal//:lib"],
     hdrs = [":include"],
     strip_include_prefix = "include",
     visibility = ["//visibility:public"],
