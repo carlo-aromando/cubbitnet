@@ -7,7 +7,7 @@
 - `pkg/` - Exportable packages
 - `internal/` - Internal packages
 - `examples/` - Example programs demonstrating usage
-- `tests/` - End-to-end tests
+- `test/` - End-to-end tests
 - `flake.nix` - Nix flake for development environment and CI
 
 ## Installation
