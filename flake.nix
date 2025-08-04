@@ -12,7 +12,7 @@
     in
     {
       devShells.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
+        packages = with pkgs; [
           # local development tools
           go
           gopls
@@ -27,6 +27,7 @@
           bzip2
           lz4
           zstd
+          liburing
 
           # bazel development
           bazel_7
