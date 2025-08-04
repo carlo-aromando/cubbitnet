@@ -19,7 +19,11 @@ func Test() {
 	wo := grocksdb.NewDefaultWriteOptions()
 	ro := grocksdb.NewDefaultReadOptions()
 
-	db.Put(wo, []byte("hello"), []byte("world"))
+	err = db.Put(wo, []byte("hello"), []byte("world"))
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	val, err := db.Get(ro, []byte("hello"))
 	if err != nil {
 		log.Fatal(err)
