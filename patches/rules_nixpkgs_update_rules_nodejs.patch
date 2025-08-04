@@ -1,0 +1,43 @@
+diff --git a/toolchains/nodejs/MODULE.bazel b/toolchains/nodejs/MODULE.bazel
+index 8fbf22b..ca3f1d0 100644
+--- a/toolchains/nodejs/MODULE.bazel
++++ b/toolchains/nodejs/MODULE.bazel
+@@ -9,7 +9,7 @@ local_path_override(
+    path = "../../core",
+ )
+ bazel_dep(name = "platforms", version = "0.0.4")
+-bazel_dep(name = "rules_nodejs", version = "5.5.3")
++bazel_dep(name = "rules_nodejs", version = "6.2.0")
+ bazel_dep(name = "bazel_skylib", version = "1.0.3")
+ 
+ nix_repo = use_extension("@rules_nixpkgs_core//extensions:repository.bzl", "nix_repo")
+diff --git a/toolchains/nodejs/private/common.bzl b/toolchains/nodejs/private/common.bzl
+index a93d3c0..c673828 100644
+--- a/toolchains/nodejs/private/common.bzl
++++ b/toolchains/nodejs/private/common.bzl
+@@ -1,6 +1,5 @@
+ load("@rules_nixpkgs_core//:nixpkgs.bzl", "nixpkgs_package")
+-load("@rules_nodejs//nodejs/private:toolchains_repo.bzl", "PLATFORMS")
+-
++load("@rules_nodejs//nodejs/private:nodejs_toolchains_repo.bzl", "PLATFORMS")
+ 
+ def _mk_mapping(rules_nodejs_platform_name):
+     constraints = PLATFORMS[rules_nodejs_platform_name].compatible_with
+@@ -41,10 +40,17 @@ pkgs.buildEnv {{
+         visibility = ["//visibility:public"],
+     )
+ 
++    filegroup(
++        name = "npm",
++        srcs = ["bin/npm"],
++        visibility = ["//visibility:public"],
++    )
++
+     load("@rules_nodejs//nodejs:toolchain.bzl", "node_toolchain")
+     node_toolchain(
+         name = "nodejs_nix_impl",
+         target_tool = ":nodejs",
++        npm = ":npm",
+         visibility = ["//visibility:public"],
+     )
+ 
