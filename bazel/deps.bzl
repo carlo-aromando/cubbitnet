@@ -1,6 +1,7 @@
 load("@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_git_repository", "nixpkgs_package")
+load("@bazel_gazelle//:deps.bzl", "go_repository")
 
-def cubbitnet_dependencies():
+def cubbitnet_dependencies(repo="@com_github_carlo_aromando_cubbitnet"):
     nixpkgs_git_repository(
         name = "nixpkgs",
         revision = "fc02ee70efb805d3b2865908a13ddd4474557ecf",
@@ -166,5 +167,20 @@ cc_library(
     visibility = ["//visibility:public"],
 )
         """
+    )
+    go_repository(
+        name = "com_github_linxgnu_grocksdb",
+        build_directives = ["\"gazelle:default_visibility //visibility:public\""],
+        build_file_proto_mode = "disable",
+        importpath = "github.com/linxGnu/grocksdb",
+        sum = "h1:YX6gUcKvSC3d0s9DaqgbU+CRkZHzlELgHu1Z/kmtslg=",
+        version = "v1.10.1",
+        patch_args = ["-p0"],
+        patches = [
+            repo + "//patches:grocksdb_move_bindings.patch",
+            repo + "//patches:grocksdb_buildfile.patch",
+            repo + "//patches:grocksdb_remove_clinkopts.patch",
+            repo + "//patches:grocksdb_add_liburing.patch",
+        ],
     )
 

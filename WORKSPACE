@@ -32,10 +32,6 @@ http_archive(
 load("@io_tweag_rules_nixpkgs//nixpkgs:repositories.bzl", "rules_nixpkgs_dependencies")
 rules_nixpkgs_dependencies()
 
-# deps
-load("//bazel:deps.bzl", "cubbitnet_dependencies")
-cubbitnet_dependencies()
-
 # go dependencies
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 go_rules_dependencies()
@@ -55,22 +51,9 @@ load("//third_party:repositories.bzl", "go_repositories")
 # gazelle:repository_macro third_party/repositories.bzl%go_repositories
 go_repositories()
 
-load("@bazel_gazelle//:deps.bzl", "go_repository")
-go_repository(
-    name = "com_github_linxgnu_grocksdb",
-    build_directives = ["\"gazelle:default_visibility //visibility:public\""],
-    build_file_proto_mode = "disable",
-    importpath = "github.com/linxGnu/grocksdb",
-    sum = "h1:YX6gUcKvSC3d0s9DaqgbU+CRkZHzlELgHu1Z/kmtslg=",
-    version = "v1.10.1",
-    patch_args = ["-p0"],
-    patches = [
-        "//patches:grocksdb_move_bindings.patch",
-        "//patches:grocksdb_buildfile.patch",
-        "//patches:grocksdb_remove_clinkopts.patch",
-        "//patches:grocksdb_add_liburing.patch",
-    ],
-)
-
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies(go_sdk = "go_sdk")
+
+# deps
+load("//bazel:deps.bzl", "cubbitnet_dependencies")
+cubbitnet_dependencies(repo="")
